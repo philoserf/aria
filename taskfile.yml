@@ -1,0 +1,26 @@
+# https://taskfile.dev
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - task pretty
+      - task fmt
+      - task lint
+      - task test
+      - task build
+  pretty:
+    cmds:
+      - prettier --write --ignore-unknown --list-different .
+  fmt:
+    cmds:
+      - gofumpt -e -l -w -extra .
+  lint:
+    cmds:
+      - golangci-lint run --fix
+  test:
+    cmds:
+      - go test ./...
+  build:
+    cmds:
+      - go build ./...
